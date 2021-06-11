@@ -1,0 +1,75 @@
+@use "../media-queries" as *;
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #333;
+  color: #f1f1f1;
+  padding: 2rem;
+
+  ul {
+    display: flex;
+
+    li + li {
+      margin-left: 2rem;
+    }
+
+    a {
+      color: #f1f1f1;
+    }
+  }
+}
+
+.burger-btn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  @include mq(tablet) {
+    display: block;
+  }
+}
+
+.burger {
+  height: 0.2rem;
+  width: 1.5rem;
+
+  background: #f1f1f1;
+  position: relative;
+  transition: background 0.2s ease-in-out;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    height: 0.2rem;
+    width: 2rem;
+    background: #f1f1f1;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:before {
+    transform: translateY(-0.8rem);
+  }
+
+  &:after {
+    transform: translateY(0.8rem);
+  }
+
+  &.open {
+    background: transparent;
+    &:before {
+      transform: translateY(0) rotate(45deg);
+      opacity: 1;
+    }
+
+    &:after {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 1;
+    }
+  }
+}
