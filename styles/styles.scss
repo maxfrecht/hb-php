@@ -274,6 +274,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 2rem;
+  margin-bottom: 5rem;
 
   @include mq(medium) {
     grid-template-columns: repeat(2, auto);
@@ -477,4 +478,8 @@ main {
       }
     }
   }
+}
+
+.logs {
+  margin-bottom: 5rem;
 }

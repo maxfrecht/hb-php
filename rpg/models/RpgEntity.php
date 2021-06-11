@@ -238,6 +238,10 @@ abstract class RpgEntity
         }
         $rpgEntity->hp -= $damage;
 
-        echo get_class($this).' a infligé '.$damage.' a '.get_class($rpgEntity).' .'.($damage > $baseDamage ? ' Coup Critique !' : '');
+        if ($rpgEntity->hp < 0) {
+            $rpgEntity->hp = 0;
+        }
+
+        echo($this instanceof Hero ? $this->getName() : 'Le '.get_class($this)).' a infligé '.round($damage, 2).' dommages '.($rpgEntity instanceof Hero ? ' a '.$rpgEntity->getName() : ' au '.get_class($rpgEntity)).' .'.($damage > $baseDamage ? ' Coup Critique !' : '').'<br>';
     }
 }

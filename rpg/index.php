@@ -26,15 +26,14 @@ $merlin = new Mage('Merlin');
 
 $merlin->setRace($ancien);
 $merlin->setLevel(15);
-
+$merlin->heal(1000);
 $Rapetou = new Rogue('Rapetou');
 $Rapetou->setRace($ancien);
 $Rapetou->setLevel(8);
 $bigBoy = new Warrior('BigBoy');
 $bigBoy->setLevel(11);
 $bigBoy->setRace($orc);
-$gobelin = new Gobelin(5);
-$merlin->attack($gobelin);
+$gobelin = new Gobelin(60);
 
 $heros[] = $merlin;
 $heros[] = $Rapetou;
@@ -63,6 +62,13 @@ $heros[] = $bigBoy;
     </nav>
     <main>
     <div class="container">
+        <div class="logs">
+            <h2>Log du combat</h2>
+        <?php
+            $merlin->attack($gobelin);
+            $gobelin->attack($merlin);
+        ?>
+        </div>
         <div class="heros">
             <?php
             foreach ($heros as $hero) {
@@ -71,6 +77,7 @@ $heros[] = $bigBoy;
             ?>
         </div>
     </div>
+
     </main>
 </body>
 </html>

@@ -81,6 +81,15 @@ abstract class Hero extends RpgEntity
             HTML;
     }
 
+    public function heal($hp)
+    {
+        $this->hp += $hp;
+
+        if ($this->hp > $this->hpMax) {
+            $this->hp = $this->hpMax;
+        }
+    }
+
     public function setDamagesAndCriticalStrike(int $carac)
     {
         $this->principalCarac = $carac;

@@ -489,6 +489,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 2rem;
+  margin-bottom: 5rem;
 }
 @media screen and (max-width: 992px) {
   .heros {
@@ -662,6 +663,10 @@ main {
 }
 .heros .hero-stats li + li {
   border-top: none;
+}
+
+.logs {
+  margin-bottom: 5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
