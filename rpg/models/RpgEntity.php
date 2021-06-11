@@ -12,7 +12,7 @@ abstract class RpgEntity
     protected int $hpMax;
     protected int $mana;
     protected int $manaMax;
-    protected float $defense;
+    protected float $defense = 0.0;
     protected float $scoreCriticalStrike;
     protected int $criticalDamage;
     protected int $damageMax;
@@ -224,7 +224,20 @@ abstract class RpgEntity
         return $this;
     }
 
-    protected function attack(RpgEntity $rpgEntity)
+    public function attack(RpgEntity $rpgEntity)
     {
+        $damage = rand($this->damageMin, $this->damageMax);
+
+        if (rand($this->scoreCriticalStrike, 100) <= $this->scoreCriticalStrike) {
+            $damage += $damage * ($this->criticalDamage / 100);
+        }
+
+        if ($rpgEntity->defense > 0) {
+            $reducedDammages = $damage * $rpgEntity->defense / 100;
+            $damage -= $reducedDammages;
+        }
+        $rpgEntity->hp -= $damage;
+
+        echo get_class($this).' a infligé '.$damage.' a '.get_class($rpgEntity);
     }
 }

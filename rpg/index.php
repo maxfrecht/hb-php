@@ -3,6 +3,8 @@ include_once '../assets/data/links.php';
 
 include_once '../poo/functions/dump.php';
 
+include_once './models/RpgEntity.php';
+
 include_once './models/Race.php';
 
 include_once './models/Hero.php';
@@ -12,6 +14,8 @@ include_once './models/Mage.php';
 include_once './models/Rogue.php';
 
 include_once './models/Warrior.php';
+
+include_once './models/Gobelin.php';
 
 $heros = [];
 
@@ -29,6 +33,8 @@ $Rapetou->setLevel(8);
 $bigBoy = new Warrior('BigBoy');
 $bigBoy->setLevel(11);
 $bigBoy->setRace($orc);
+$gobelin = new Gobelin(5);
+$merlin->attack($gobelin);
 
 $heros[] = $merlin;
 $heros[] = $Rapetou;
