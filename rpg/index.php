@@ -66,6 +66,9 @@ $heros[] = $bigBoy;
             <h2>Log du combat</h2>
         <?php
             $merlin->attack($gobelin);
+            $merlin->attack($gobelin);
+            $merlin->attack($gobelin);
+            $merlin->attack($gobelin);
             $gobelin->attack($merlin);
         ?>
         </div>

@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Ability.php';
+
 /**
  * RpgEntity.
  *
@@ -17,6 +19,9 @@ abstract class RpgEntity
     protected int $criticalDamage;
     protected int $damageMax;
     protected int $damageMin;
+    protected ?Ability $ability;
+    protected ?float $abilityRatio;
+    protected int $turn = 0;
 
     /**
      * Get the value of level.
@@ -224,24 +229,74 @@ abstract class RpgEntity
         return $this;
     }
 
-    public function attack(RpgEntity $rpgEntity)
+    public function attack(RpgEntity $rpgEntity): bool
     {
-        $damage = rand($this->damageMin, $this->damageMax);
-        $baseDamage = $damage;
-        if (rand(1, 100) <= $this->scoreCriticalStrike) {
-            $damage += $damage * ($this->criticalDamage / 100);
+        if (0 === $this->turn % 3 && isset($this->ability)) {
+            $this->useAbility($rpgEntity);
+        } else {
+            $damage = rand($this->damageMin, $this->damageMax);
+            $baseDamage = $damage;
+            if (rand(1, 100) <= $this->scoreCriticalStrike) {
+                $damage += $damage * ($this->criticalDamage / 100);
+            }
+
+            if ($rpgEntity->defense > 0) {
+                $reducedDammages = $damage * $rpgEntity->defense / 100;
+                $damage -= $reducedDammages;
+            }
+            $rpgEntity->hp -= $damage;
+
+            if ($rpgEntity->hp < 0) {
+                $rpgEntity->hp = 0;
+            }
+
+            echo($this instanceof Hero ? $this->getName() : 'Le '.get_class($this)).' a infligé '.round($damage, 2).' dommages '.($rpgEntity instanceof Hero ? ' a '.$rpgEntity->getName() : ' au '.get_class($rpgEntity)).' .'.($damage > $baseDamage ? ' Coup Critique !' : '').'<br>';
         }
 
-        if ($rpgEntity->defense > 0) {
-            $reducedDammages = $damage * $rpgEntity->defense / 100;
-            $damage -= $reducedDammages;
-        }
-        $rpgEntity->hp -= $damage;
+        if (0 === $this->hp || 0 === $rpgEntity->hp) {
+            $this->turn = 0;
 
-        if ($rpgEntity->hp < 0) {
-            $rpgEntity->hp = 0;
+            return false;
         }
 
-        echo($this instanceof Hero ? $this->getName() : 'Le '.get_class($this)).' a infligé '.round($damage, 2).' dommages '.($rpgEntity instanceof Hero ? ' a '.$rpgEntity->getName() : ' au '.get_class($rpgEntity)).' .'.($damage > $baseDamage ? ' Coup Critique !' : '').'<br>';
+        ++$this->turn;
+
+        return true;
+    }
+
+    /**
+     * Set the value of ability.
+     *
+     * @param mixed $ability
+     *
+     * @return self
+     */
+    public function setAbility($ability)
+    {
+        $this->ability = $ability;
+
+        return $this;
+    }
+
+    public function useAbility(RpgEntity $rpgEntity)
+    {
+        if (isset($this->ability)) {
+            if ($this->mana >= $this->ability->getManaCost()) {
+                $damage = $this->ability->getDamage();
+
+                $rpgEntity->hp -= $damage;
+                $this->mana -= $this->ability->getManaCost();
+
+                if ($rpgEntity->hp < 0) {
+                    $rpgEntity->hp = 0;
+                }
+
+                echo($this instanceof Hero ? $this->getName() : 'Le '.get_class($this)).' a infligé '.round($damage, 2).' dommages '.($rpgEntity instanceof Hero ? ' a '.$rpgEntity->getName() : ' au '.get_class($rpgEntity))." avec l'abilité ".$this->ability->getName().'<br>';
+            } else {
+                echo 'Pas assez de Mana !<br>';
+            }
+        } else {
+            echo "Pas d'abilité<br>";
+        }
     }
 }

@@ -105,6 +105,9 @@ abstract class Hero extends RpgEntity
         $this->setIntelligence($this->intelligence + $this->lvlUpIntelligence);
         $this->setAgility($this->agility + $this->lvlUpAgility);
         $this->setDamagesAndCriticalStrike($this->principalCarac);
+        if (isset($this->ability)) {
+            $this->ability->setDamage($this->principalCarac * $this->abilityRatio);
+        }
     }
 
     /**
@@ -166,6 +169,9 @@ abstract class Hero extends RpgEntity
         $this->setIntelligence($this->intelligence + ($level - 1) * $this->lvlUpIntelligence);
         $this->setAgility($this->agility + ($level - 1) * $this->lvlUpAgility);
         $this->setDamagesAndCriticalStrike($this->principalCarac);
+        if (isset($this->ability)) {
+            $this->ability->setDamage($this->principalCarac * $this->abilityRatio);
+        }
 
         return $this;
     }
