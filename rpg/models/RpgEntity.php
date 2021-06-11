@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * RpgEntity.
+ *
+ * @author maxFrecht
+ */
 abstract class RpgEntity
 {
     protected int $level;

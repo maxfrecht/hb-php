@@ -6,6 +6,8 @@ include_once 'RpgEntity.php';
 
 /**
  * Hero.
+ *
+ * @author maxFrecht
  */
 abstract class Hero extends RpgEntity
 {
