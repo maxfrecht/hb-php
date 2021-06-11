@@ -227,8 +227,8 @@ abstract class RpgEntity
     public function attack(RpgEntity $rpgEntity)
     {
         $damage = rand($this->damageMin, $this->damageMax);
-
-        if (rand($this->scoreCriticalStrike, 100) <= $this->scoreCriticalStrike) {
+        $baseDamage = $damage;
+        if (rand(1, 100) <= $this->scoreCriticalStrike) {
             $damage += $damage * ($this->criticalDamage / 100);
         }
 
@@ -238,6 +238,6 @@ abstract class RpgEntity
         }
         $rpgEntity->hp -= $damage;
 
-        echo get_class($this).' a infligé '.$damage.' a '.get_class($rpgEntity);
+        echo get_class($this).' a infligé '.$damage.' a '.get_class($rpgEntity).' .'.($damage > $baseDamage ? ' Coup Critique !' : '');
     }
 }
