@@ -1,11 +1,11 @@
 <?php
 include_once './data/data.php';
-
+include_once '../assets/data/links.php';
 include_once './functions/dump.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -16,11 +16,13 @@ include_once './functions/dump.php';
 </head>
 
 <body>
+    <?php include '../nav.php' ?>
   <main>
     <div class="container">
       <h2>Songs</h2>
       <div class="songs">
         <?php
+        $html ='';
         foreach ($songs as $song) {
             $html .= '<div class="song"><h3>'.$song->getName().'</h3><p>'.$song->getDuration().'</p>'.(count($song->getArtists()) > 0 ? '<p>'.$song->getArtists()[0]->getName().'</p>' : '').'<p class="price">'.$song->getPrice().' €</p><div class="styles">';
 
@@ -37,6 +39,7 @@ include_once './functions/dump.php';
         <?php echo '<h2>'.$album1->getName().'</h2><p>'.$album1->getYear().'</p><p>Durée : '.$album1->getTotalDuration().'</p>'; ?>
         <div class="songs">
           <?php
+          $html2 = '';
           foreach (($album1->getSongs()) as $song) {
               $html2 .= '<div class="song"><h3>'.$song->getName().'</h3><p>'.$song->getDuration().'</p>'.(count($song->getArtists()) > 0 ? '<p>'.$song->getArtists()[0]->getName().'</p>' : '').'<p class="price">'.$song->getPrice().' €</p><div class="styles">';
 

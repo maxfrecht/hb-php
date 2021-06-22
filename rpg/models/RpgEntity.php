@@ -231,9 +231,13 @@ abstract class RpgEntity
 
     public function attack(RpgEntity $rpgEntity): bool
     {
+        echo $this->turn;
         if (0 === $this->turn % 3 && isset($this->ability)) {
             $this->useAbility($rpgEntity);
+            ++$this->turn;
         } else {
+            ++$this->turn;
+
             $damage = rand($this->damageMin, $this->damageMax);
             $baseDamage = $damage;
             if (rand(1, 100) <= $this->scoreCriticalStrike) {
@@ -254,12 +258,11 @@ abstract class RpgEntity
         }
 
         if (0 === $this->hp || 0 === $rpgEntity->hp) {
-            $this->turn = 0;
+//            $this->turn = 0;
 
             return false;
         }
 
-        ++$this->turn;
 
         return true;
     }

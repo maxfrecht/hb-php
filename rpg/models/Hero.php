@@ -9,7 +9,7 @@ include_once 'RpgEntity.php';
  *
  * @author maxFrecht
  */
-abstract class Hero extends RpgEntity
+abstract class Hero extends RpgEntity implements Serializable
 {
     protected string $name;
     protected string $class;
@@ -42,6 +42,50 @@ abstract class Hero extends RpgEntity
         $this->lvlUpIntelligence = $lvlUpIntelligence;
         $this->class = $class;
         $this->urlImage = $urlImage;
+    }
+
+    public function serialize(): string
+    {
+        $serializable = get_object_vars($this);
+
+        return serialize($serializable);
+    }
+
+    public function unserialize($data)
+    {
+        $data = unserialize($data);
+        $this->level = $data['level'];
+        $this->scoreCriticalStrike = $data['scoreCriticalStrike'];
+        $this->criticalDamage = $data['criticalDamage'];
+        $this->name = $data['name'];
+        $this->setStrength($data['strength']);
+        $this->hp = $data['strength'] * 19;
+        $this->setIntelligence($data['intelligence']);
+        $this->mana = $data['intelligence'] * 17;
+        $this->setAgility($data['agility']);
+        $this->lvlUpAgility = $data['lvlUpAgility'];
+        $this->lvlUpStrength = $data['lvlUpStrength'];
+        $this->lvlUpIntelligence = $data['lvlUpIntelligence'];
+        $this->class = $data['class'];
+        $this->urlImage = $data['urlImage'];
+        $this->race = $data['race'];
+        if($this->class==='Mage') {
+            $this->setDamagesAndCriticalStrike(($this->intelligence));
+            $this->abilityRatio = 2;
+            $ability = new Ability($this->principalCarac * $this->abilityRatio, 'Fire Ball', 110);
+            $this->setAbility($ability);
+        } elseif($this->class === 'Rogue') {
+            $this->setDamagesAndCriticalStrike(($this->agility));
+            $this->abilityRatio = 1.9;
+            $ability = new Ability($this->principalCarac * $this->abilityRatio, 'Embuscade', 160);
+            $this->setAbility($ability);
+        } elseif($this->class === 'Warrior') {
+            $this->setDamagesAndCriticalStrike(($this->strength));
+            $this->abilityRatio = 1.8;
+            $ability = new Ability($this->principalCarac * $this->abilityRatio, 'Heurtoir', 150);
+            $this->setAbility($ability);
+        }
+        $this->setLevel($data['level']);
     }
 
     public function toHTML(): void

@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass" : "sass --watch ./styles/styles.scss ./css/style.css"
+    "sass": "sass --watch ./styles/styles.scss ./css/style.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "material-design-icons": "^3.0.1",
     "sass": "^1.34.0"
   }
 }

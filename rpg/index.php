@@ -1,86 +1,41 @@
 <?php
-include_once '../assets/data/links.php';
-
-include_once '../poo/functions/dump.php';
-
-include_once './models/RpgEntity.php';
-
-include_once './models/Race.php';
-
-include_once './models/Hero.php';
-
-include_once './models/Mage.php';
-
-include_once './models/Rogue.php';
-
-include_once './models/Warrior.php';
-
-include_once './models/Gobelin.php';
-
-$heros = [];
-
-$orc = new Race('Orc');
-$ancien = new race('Ancien');
-
-$merlin = new Mage('Merlin');
-
-$merlin->setRace($ancien);
-$merlin->setLevel(15);
-$merlin->heal(1000);
-$Rapetou = new Rogue('Rapetou');
-$Rapetou->setRace($ancien);
-$Rapetou->setLevel(8);
-$bigBoy = new Warrior('BigBoy');
-$bigBoy->setLevel(11);
-$bigBoy->setRace($orc);
-$gobelin = new Gobelin(60);
-
-$heros[] = $merlin;
-$heros[] = $Rapetou;
-$heros[] = $bigBoy;
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Role Play Game</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-<nav>
-    <div class="brand">LOGO</div>
-    <div class="burger-btn"><span class="burger open"></span></div>
-    <ul>
-        <?php foreach ($links as $link => $href) {
-    echo '<li><a href="'.$href.'"> '.$link.'</a></li>';
-} ?>
-    </ul>
-    </nav>
-    <main>
-    <div class="container">
-        <div class="logs">
-            <h2>Log du combat</h2>
-        <?php
-            $merlin->attack($gobelin);
-            $merlin->attack($gobelin);
-            $merlin->attack($gobelin);
-            $merlin->attack($gobelin);
-            $gobelin->attack($merlin);
-        ?>
-        </div>
-        <div class="heros">
-            <?php
-            foreach ($heros as $hero) {
-                $hero->toHTML();
-            }
-            ?>
-        </div>
-    </div>
 
-    </main>
+    <title>Rpg Style PHP</title>
+</head>
+<body class="rpg">
+<div class="container container-hero">
+    <form class="hero-form" action="http://localhost:8000/rpg/Battles/first-battle.php" method="post"
+          enctype="multipart/form-data">
+        <h1>Création de personnage</h1>
+        <label for="name" required>Name</label>
+        <input type="text" name="name" id="name" placeholder="pseudo" minlength="3" maxlength="15">
+        <label for="file">File</label>
+        <input name="file" type="file">
+        <label for="class">Class</label>
+        <select name="class" id="class" required>
+            <option value="Mage">Mage</option>
+            <option value="Rogue">Voleur</option>
+            <option value="Warrior">Guerrier</option>
+        </select>
+        <label for="difficulty">Difficulté</label>
+        <select name="difficulty" id="class" required>
+            <option value="Aventurier">aventurier</option>
+            <option value="Explorateur">explorateur</option>
+            <option value="Veteran">Vétéran</option>
+        </select>
+        <input type="submit" value="Créer mon personnage">
+    </form>
+</div>
 </body>
 </html>
