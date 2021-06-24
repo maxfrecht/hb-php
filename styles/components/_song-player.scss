@@ -1,0 +1,149 @@
+.songs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  align-items: start;
+  gap: 2rem;
+  margin: 3.5rem 0;
+
+  .song {
+    position: relative;
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    min-height: 22rem;
+    background: rgb(69, 75, 71);
+    border-radius: 0.3rem;
+    transition: color 0.35s ease-in-out, transform 0.35s ease-in-out,
+    box-shadow 0.35s ease-in-out;
+    overflow: hidden;
+    display: grid;
+    gap: 1rem;
+    cursor: pointer;
+    transform: rotate(0) scale(1);
+
+    & > * {
+      position: relative;
+      z-index: 5;
+    }
+
+    &:before {
+      content: url("../../assets/img/disc-svgrepo-com.svg");
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%) scale(4);
+      opacity: 0.05;
+      z-index: 0;
+      transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #ebfff186;
+      width: 200%;
+      height: 200%;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s ease-in-out, opacity 0.4s ease;
+    }
+
+    &:hover {
+      box-shadow: 1rem 1rem 0.8rem 1rem rgba(0, 0, 0, 0.2);
+      color: #39413b;
+      transform: rotate(-2.5deg) scale(1.1);
+      z-index: 5;
+
+      &:before {
+        animation: rotate 2s infinite ease-out;
+        animation-delay: 0.35s;
+        opacity: 1;
+        transform: scale(1) translatey(-50%);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      .styles span {
+        background: rgba(255, 255, 255, 0.377);
+      }
+
+      .price {
+        opacity: 1;
+        transform: scale(1);
+        border-radius: 0.3rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+
+    .styles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, auto-fit);
+      gap: 0.5rem;
+      align-items: center;
+
+      span {
+        padding: 0.5rem 1rem;
+        background: #333;
+        font-size: 1.2rem;
+        text-align: center;
+        border-radius: 0.3rem;
+        transition: background 0.2s ease;
+        width: fit-content;
+      }
+    }
+
+    .price {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.25rem 1rem;
+      background: #333;
+      color: #ebfff1;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: scale(0);
+      border-radius: 50%;
+      transition: transform 0.35s ease, opacity 0.35s ease,
+      border-radius 0.35s ease;
+    }
+  }
+}
+
+.album {
+  padding: 3.5rem;
+  background: rgb(49, 54, 49);
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 5rem;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:before {
+    content: url("../../assets/img/disc-svgrepo-com.svg");
+    position: absolute;
+    right: 3.5rem;
+    transform: translateY(-50%) scale(10) rotate(240deg);
+    opacity: 0.035;
+    transform-origin: center center;
+    animation: rotateAlbum 10s infinite;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0.3rem rgb(49, 54, 49);
+
+    &:after {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+}

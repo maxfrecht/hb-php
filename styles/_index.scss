@@ -1,5 +1,17 @@
 @forward 'reset';
+@forward 'variables';
 @forward 'base';
 @forward 'utilities';
 @forward 'media-queries';
+@forward 'animations';
+@forward 'fonts';
 @forward './components/nav';
+@forward './components/damier';
+@forward './components/navale';
+@forward './components/song-player';
+@forward './components/hero';
+@forward 'components/exo-count';
+@forward 'components/errors';
+@forward 'components/count-page';
+@forward 'components/commerce';
+@forward 'components/rpg';

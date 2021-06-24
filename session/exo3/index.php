@@ -54,7 +54,7 @@ if (isset($_POST)) {
 
             echo <<<HTML
                     <li>{$name} - {$values['price']}€ - quantité : {$values['quantity']}
-                        <form action="http://localhost:8000/session/exo3/test.php" method="post">
+                        <form action="http://localhost:8000/session/exo3/index.php" method="post">
                             <input type="text" name="delete" id="name" value="{$name}" hidden>
                             <input type="submit" value="Supprimer">
                         </form>
@@ -76,7 +76,7 @@ HTML;
             <h2>{$item}</h2>
             <img src="{$values['logo']}">
             <p>{$values['price']}€</p>
-            <form action="http://localhost:8000/session/exo3/test.php" method="post">
+            <form action="http://localhost:8000/session/exo3/index.php" method="post">
                 <input type="text" name="name" id="name" value="{$item}" hidden>
                 <input type="text" name="price" id="price" value="{$values['price']}" hidden>
                 <input type="submit" value="Ajouter au panier">

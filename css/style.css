@@ -7,12 +7,32 @@
 }
 
 :root {
+  --text: #ebfff1;
+  --bg-color: rgb(46, 49, 46);
+  --hint: #333;
+  --bg-card: rgb(49, 54, 49);
+  --bg-color-hover: #ebfff186;
+}
+:root.light {
+  --text: #39413b;
+  --bg-color: #ebfff186;
+  --hint: rgba(255, 255, 255, 0.377);
+}
+
+:root {
   font-size: 62.5%;
 }
 
 body {
   font-size: 1.6rem;
   font-family: "Ubuntu", sans-serif;
+  background: #2e312e;
+  color: #ebfff1;
+  min-height: 100vh;
+}
+
+main {
+  margin-top: 5rem;
 }
 
 h1,
@@ -173,6 +193,77 @@ p {
   color: #f1f1f1;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: translateY(-50%) rotate(0) scale(1);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg) scale(1);
+  }
+}
+@keyframes rotateAlbum {
+  0% {
+    transform: translateY(-50%) scale(10) rotate(0);
+  }
+  100% {
+    transform: translateY(-50%) scale(10) rotate(360deg);
+  }
+}
+@keyframes bright {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot);
+  /* For IE6-8 */
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format("woff2"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format("woff"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format("truetype");
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -180,6 +271,7 @@ nav {
   background: #333;
   color: #f1f1f1;
   padding: 2rem;
+  margin-bottom: 8rem;
 }
 nav ul {
   display: flex;
@@ -238,98 +330,6 @@ nav ul a {
   opacity: 1;
 }
 
-@font-face {
-  font-family: "Material Icons";
-  font-style: normal;
-  font-weight: 400;
-  src: url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot);
-  /* For IE6-8 */
-  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format("woff2"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format("woff"), url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format("truetype");
-}
-.material-icons {
-  font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: "liga";
-}
-
-@keyframes animate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-@keyframes rotate {
-  0% {
-    transform: translateY(-50%) rotate(0) scale(1);
-  }
-  100% {
-    transform: translateY(-50%) rotate(360deg) scale(1);
-  }
-}
-@keyframes rotateAlbum {
-  0% {
-    transform: translateY(-50%) scale(10) rotate(0);
-  }
-  100% {
-    transform: translateY(-50%) scale(10) rotate(360deg);
-  }
-}
-@keyframes bright {
-  0% {
-    left: -50%;
-  }
-  100% {
-    left: 150%;
-  }
-}
-:root {
-  --text: #ebfff1;
-  --bg-color: rgb(46, 49, 46);
-  --hint: #333;
-  --bg-card: rgb(49, 54, 49);
-  --bg-color-hover: #ebfff186;
-}
-:root.light {
-  --text: #39413b;
-  --bg-color: #ebfff186;
-  --hint: rgba(255, 255, 255, 0.377);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #2e312e;
-  color: #ebfff1;
-  min-height: 100vh;
-}
-
-nav {
-  margin-bottom: 8rem;
-}
-
 .black,
 .white,
 .empty,
@@ -381,10 +381,6 @@ nav {
   border-radius: 50%;
 }
 
-main {
-  margin-top: 5rem;
-}
-
 .songs {
   display: grid;
   grid-template-columns: repeat(auto-fill, 20rem);
@@ -411,7 +407,7 @@ main {
   z-index: 5;
 }
 .songs .song:before {
-  content: url("../assets/img/disc-svgrepo-com.svg");
+  content: url("../../assets/img/disc-svgrepo-com.svg");
   position: absolute;
   top: 50%;
   right: 2rem;
@@ -501,7 +497,7 @@ main {
   transition: box-shadow 0.2s ease-in-out;
 }
 .album:before {
-  content: url("../assets/img/disc-svgrepo-com.svg");
+  content: url("../../assets/img/disc-svgrepo-com.svg");
   position: absolute;
   right: 3.5rem;
   transform: translateY(-50%) scale(10) rotate(240deg);
@@ -839,26 +835,84 @@ main {
   margin-top: 1.5rem;
 }
 
+.commerce {
+  padding-top: 5rem;
+}
+.commerce .items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  perspective: 400rem;
+  flex-wrap: wrap;
+  min-width: 70%;
+  width: 100%;
+  height: fit-content;
+}
 .commerce .container {
   display: flex;
   justify-content: space-between;
+  transform-style: preserve-3d;
 }
 .commerce .container aside {
   width: 25%;
   border: 0.2rem solid;
   padding: 2rem;
+  height: fit-content;
+  border-radius: 0.5rem;
+  color: #333;
+  background-color: #ebfff186;
 }
 .commerce .container aside ul {
   display: flex;
   flex-direction: column;
 }
+.commerce .container aside ul li {
+  border-top: 0.1rem solid;
+  padding-top: 1rem;
+}
+.commerce .container aside ul li:last-of-type {
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid;
+}
+.commerce .container aside ul li form {
+  margin-top: 1rem;
+}
+.commerce .container aside ul li form input {
+  padding: 0.5rem;
+}
 .commerce .container aside ul li + li {
   margin-top: 1rem;
 }
+.commerce .container .focus-item:hover .item {
+  transform: rotateY(0deg) translateY(-0.2rem) scale(1.025);
+}
+.commerce .container .focus-item:hover .item input[type=submit] {
+  background: #20cb20;
+  color: #f1f1f1;
+  font-weight: bold;
+}
+.commerce .container .focus-item:hover .item .img img {
+  transform: scale(1.025);
+}
 .commerce .container .item {
+  position: relative;
   max-width: 28rem;
-  background: #505050;
+  background: #c1c1c1;
+  color: #333;
   border-radius: 0.3rem;
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+  transform: rotateY(10deg);
+  transform-origin: center center;
+  transition: background 0.2s ease-in-out, transform 0.25s ease-in-out;
+}
+.commerce .container .item .back {
+  position: absolute;
+  inset: 0;
+}
+.commerce .container .item .img {
+  overflow: hidden;
+}
+.commerce .container .item .img img {
+  transition: transform 0.2s ease-in-out;
 }
 .commerce .container .item h2 {
   font-weight: 400;
@@ -872,11 +926,23 @@ main {
   padding-left: 2rem;
   padding-bottom: 2rem;
 }
+.commerce .container .item form input[type=submit] {
+  padding: 1rem;
+  border: 0;
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, color 0.2s ease, font-weight 0.2s ease;
+}
 .commerce .container aside + .items {
   margin-left: 4rem;
 }
 .commerce .container aside + .items .item {
   max-width: 23rem;
+}
+
+.winner {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../rpg/images/bg-winner.png) no-repeat bottom center;
 }
 
 .rpg {
@@ -892,13 +958,21 @@ main {
   align-items: center;
   font-weight: 400;
   font-size: 4.5rem;
-  margin-bottom: 3.5rem;
+  margin: 3.5rem 0;
 }
 .dungeon h1 img {
   margin: 0 2rem;
   max-width: 10rem;
 }
-.dungeon .btn {
+
+.container.container-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container.container-hero .btn {
   color: #f1f1f1;
   background: rgba(51, 51, 51, 0.8);
   padding: 1rem 1.5rem;
@@ -909,7 +983,7 @@ main {
   border: 0.2rem solid rgba(241, 241, 241, 0.8);
   border-radius: 0.2rem;
 }
-.dungeon .btn:before {
+.container.container-hero .btn:before {
   content: "";
   display: inline-block;
   background-image: url(../rpg/images/sword.png);
@@ -917,14 +991,6 @@ main {
   width: 3rem;
   height: 3rem;
   margin-right: 0.5rem;
-}
-
-.container.container-hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .hero-form {

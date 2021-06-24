@@ -90,6 +90,7 @@ abstract class Hero extends RpgEntity implements Serializable
 
     public function toHTML(): void
     {
+        $critchance = $this->scoreCriticalStrike;
         echo <<<HTML
             <div class="hero">
                 
@@ -119,6 +120,7 @@ abstract class Hero extends RpgEntity implements Serializable
                         <h3>Dommages</h3>
                         <p>Dommages minimum : {$this->damageMin}</p>
                         <p>Dommages maximum : {$this->damageMax}</p>
+                        <p>Chance de critique : {$critchance}%</p>
                     </div>
                 </div>
             </div>

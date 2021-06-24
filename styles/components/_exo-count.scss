@@ -1,0 +1,90 @@
+.exo-count {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(158, 168, 160);
+  transform-style: preserve-3d;
+  .count-content {
+    text-align: center;
+    padding: 6rem;
+    background: rgba(21, 22, 21, 0.134);
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    perspective: 30rem;
+    transition: transform 1s ease;
+    &:hover .count {
+      transform: rotateY(180deg);
+
+      & .count-back {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+
+  a {
+    button {
+      font-size: 4rem;
+      color: #f1f1f1;
+      border: 0;
+      padding: 2rem 4rem;
+      border-radius: 0.3rem 0 0 0.3rem;
+      background: rgb(81, 212, 81);
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      transition: transform 0.2s ease, background 0.15s ease,
+      box-shadow 0.2s ease;
+
+      &:hover {
+        background: rgb(95, 248, 95);
+        transform: rotateY(15deg) translateY(-0.3rem) scale(1.05);
+        box-shadow: -0.5rem 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &:last-of-type button {
+      border-radius: 0 0.3rem 0.3rem 0;
+      background: rgb(219, 72, 72);
+
+      &:hover {
+        background: rgb(245, 80, 80);
+        transform: rotateY(-15deg) translateY(-0.3rem) scale(1.05);
+        box-shadow: 0.5rem 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .count-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .count {
+    margin-top: 2rem;
+    font-size: 3rem;
+    transition: transform 1s ease-in-out;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.247);
+    backface-visibility: visible;
+    position: relative;
+
+    .count-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      backface-visibility: visible;
+      transition: transform 1s ease;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.247);
+    }
+  }
+}

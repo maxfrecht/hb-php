@@ -1,4 +1,13 @@
 <?php
+include_once '../../poo/functions/dump.php';
+include_once '../models/Mage.php';
+include_once '../models/Rogue.php';
+include_once '../models/Warrior.php';
+include_once '../models/Gobelin.php';
+include_once '../models/Aventurier.php';
+include_once '../models/Explorateur.php';
+include_once '../models/Veteran.php';
+session_start();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -11,8 +20,13 @@
 
     <title>Document</title>
 </head>
-<body>
-<div class="container"><h1>YOU ROCK !</h1>
-    <a href="http://localhost:8000/rpg/index.php">Restart</a></div>
+<body class="winner">
+<div class="container container-hero"><h1>YOU ROCK !</h1>
+    <div class="heros">
+        <?= $_SESSION['character']->toHTML() ?>
+    </div>
+    <a class="btn" href="http://localhost:8000/rpg/index.php">Restart</a></div>
 </body>
 </html>
+<?php
+session_destroy();

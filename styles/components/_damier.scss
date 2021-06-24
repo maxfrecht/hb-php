@@ -1,0 +1,27 @@
+@use '../variables' as *;
+
+.black,
+.white,
+.empty,
+.bateau {
+  height: $damier-case-size;
+}
+
+.black {
+  background: #000;
+}
+
+.white {
+  background: #f1f1f1;
+}
+
+.damier {
+  max-width: ($damier-case-size * 8) + (2 * $damier-border-size);
+  border: 1rem solid #333;
+}
+
+.damier {
+  .col-1 {
+    width: 12.5% !important;
+  }
+}

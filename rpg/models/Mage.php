@@ -1,7 +1,6 @@
 <?php
 
 include_once 'Hero.php';
-
 include_once 'Ability.php';
 
 class Mage extends Hero

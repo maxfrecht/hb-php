@@ -29,17 +29,18 @@ if (isset($_POST['name'], $_POST['class'], $_FILES['file'])) {
         $_SESSION['character']->setRace($race);
     }
 
-    if(isset($_POST['difficulty'])) {
+    if (isset($_POST['difficulty'])) {
         $_SESSION['difficulty'] = new $_POST['difficulty']($_SESSION['character']->getLevel());
     }
     $_SESSION['link'] = 'Next Battle';
     include_once '../templates/prepare-battle-template.php';
 
-} elseif(isset($_SESSION['character'], $_SESSION['difficulty'])) {
+} elseif (isset($_SESSION['character'], $_SESSION['difficulty'])) {
 
-    if($_SESSION['difficulty']->isFigthOver()) {
+    if ($_SESSION['difficulty']->isFigthOver()) {
         include_once '../templates/battle-template.php';
     } else {
+        $_SESSION['difficulty']->incrementCurrentIndex();
         include_once '../templates/prepare-battle-template.php';
     }
 }

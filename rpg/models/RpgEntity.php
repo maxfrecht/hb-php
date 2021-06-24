@@ -241,7 +241,7 @@ abstract class RpgEntity
             $damage = rand($this->damageMin, $this->damageMax);
             $baseDamage = $damage;
             if (rand(1, 100) <= $this->scoreCriticalStrike) {
-                $damage += $damage * ($this->criticalDamage / 100);
+                $damage += $damage + ($this->criticalDamage / 100);
             }
 
             if ($rpgEntity->defense > 0) {

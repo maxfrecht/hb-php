@@ -41,7 +41,7 @@ abstract class Dungeon
     /**
      * @param int $currentIndex
      */
-    public function incrementCurrentIndex(int $currentIndex): void
+    public function incrementCurrentIndex(): void
     {
         $this->currentIndex++;
     }
@@ -79,7 +79,7 @@ abstract class Dungeon
                 $fighters[$second]->attack($fighters[$first]);
             }
         }
-        $this->currentIndex++;
+//        $this->currentIndex++;
         $this->isFigthOver = false;
     }
 

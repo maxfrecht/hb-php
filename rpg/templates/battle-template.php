@@ -25,7 +25,7 @@
     ?>
     <div class="heros">
         <?= $_SESSION['character']->toHTML() ?>
-        <?= $_SESSION['difficulty']->getCurrentMonster()->toHTML() ?>
+        <?= $_SESSION['difficulty']->getMonsters()[$_SESSION['difficulty']->getCurrentIndex()]->toHTML() ?>
     </div>
 
     <?php
